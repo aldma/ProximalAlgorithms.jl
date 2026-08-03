@@ -84,11 +84,7 @@ struct Rosenbrock{T}
 end
 (f::Rosenbrock)(x) = (f.a-x[1])^2 + f.b*(x[2]-x[1]^2)^2
 function ProximalAlgorithms.value_and_gradient(f::Rosenbrock, x)
-  fx = f(x)
-  gx = similar(x)
-  gx[1] = 2*(x[1]-f.a) + 4*f.b*(x[1]^2-x[2])*x[1]
-  gx[2] = 2*f.b*(x[2]-x[1]^2)
-  return fx, gx
+  return f(x), [2*(x[1]-f.a) + 4*f.b*(x[1]^2-x[2])*x[1], 2*f.b*(x[2]-x[1]^2)]
 end
 
 f = Rosenbrock(1.0, 100.0)
@@ -105,10 +101,7 @@ The `FastForwardBackward` algorithm is instantiated with a termination tolerance
 using Zygote
 using DifferentiationInterface: AutoZygote
 
-f_auto = ProximalAlgorithms.AutoDifferentiable(
-    x -> (f.a-x[1])^2 + f.b*(x[2]-x[1]^2)^2,
-    AutoZygote(),
-)
+f_auto = ProximalAlgorithms.AutoDifferentiable(x -> f(x), AutoZygote())
 x, iters = solver(x0 = ones(2), f = f_auto, g = g)
 ```
 
