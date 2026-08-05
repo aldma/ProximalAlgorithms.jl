@@ -69,14 +69,17 @@ Users can just as easily supply hand-written gradients or proximal mappings for 
 `ProximalAlgorithms.jl` deliberately does not provide a modeling language that automatically decomposes an arbitrary objective into terms and picks a matching algorithm, in the way that, e.g., disciplined convex programming frameworks do for problems expressible in their grammar.
 Instead, the user formulates the problem directly in terms of the objective terms ($f$, $g$, $h$, and, where relevant, a linear operator $L$) that a chosen algorithm expects, and the package supplies the iteration logic, termination handling, and (where applicable) adaptive step-size or line-search machinery.
 This design keeps the package lightweight and composable: new algorithms can be added by implementing a small, self-contained iterator interface, and existing algorithms can be reused as subproblem solvers inside other packages.
+[StructuredOptimization.jl](https://github.com/JuliaFirstOrder/StructuredOptimization.jl) provides a high-level modeling language and a user-friendly interface to invoke `ProximalAlgorithms.jl`.
 
 ## State of the field
 
+`ProximalAlgorithms.jl` has been under development since October 2017, positioning it as one of the earlier general-purpose toolboxes offering a broad, unified interface to first-order splitting methods.
+`ProximalAlgorithms.jl` gives users of the Julia optimization ecosystems direct access to a wide range of well-established, first-order splitting algorithms through a single, consistent, allocation-conscious interface, backed by [ProximalOperators.jl](https://github.com/JuliaFirstOrder/ProximalOperators.jl)'s extensive library of proximable functions.
+
 This complements, rather than duplicates, other optimization software in the Julia ecosystem.
-For instance, [RegularizedOptimization.jl](https://github.com/JuliaSmoothOptimizers/RegularizedOptimization.jl) [@gollier-habiboullah-leconte-baraldi-demarchi-orban-diouane-2026] implements model-based trust-region and quadratic-regularization methods for a similar class of nonsmooth problems.
+[RegularizedOptimization.jl](https://github.com/JuliaSmoothOptimizers/RegularizedOptimization.jl) [@gollier-habiboullah-leconte-baraldi-demarchi-orban-diouane-2026] implements model-based trust-region and quadratic-regularization methods for a similar class of nonsmooth problems.
 Such methods typically require fewer evaluations of the smooth term and its gradient than the line-search-based methods in `ProximalAlgorithms.jl`, at the cost of more proximal-operator evaluations.
 [FrankWolfe.jl](https://github.com/ZIB-IOL/FrankWolfe.jl) is a toolbox for convex optimization using conditional gradient algorihms [@besancon-carderera-pokutta-2022], which rely on linear minimization oracles instead of proximal mappings.
-`ProximalAlgorithms.jl` gives users of the Julia optimization ecosystems direct access to a wide range of well-established, first-order splitting algorithms through a single, consistent, allocation-conscious interface, backed by [ProximalOperators.jl](https://github.com/JuliaFirstOrder/ProximalOperators.jl)'s extensive library of proximable functions.
 
 There are also related Python packages that implement proximal methods, often restricted to convex problems or designed for specific applications, such as 
 [PyUNLocBoX](https://github.com/epfl-lts2/pyunlocbox) [@pyunlocbox-2017],
@@ -86,13 +89,15 @@ There are also related Python packages that implement proximal methods, often re
 
 ## Research impact
 
-Simulations and comparisons in several papers [@themelis-stella-patrinos-2018,@sathya-sopasakis-vanparys-themelis-pipeleers-patrinos-2018,@katriniok-sopasakis-schuurmans-patrinos-2019,@demarchi-themelis-2022,@themelis-stella-patrinos-2022,@stella,@latafat-patrinos-2017,@antonello-stella-patrinos-vanwaterschoot-2018]
-[@demarchi-jia-kanzow-mehlitz-2023,@demarchi-2024]
-[@adeoye-bemporad-2026,@pas-themelis-patrinos-2023,@liang-2025,@waldmann-fan-2026]
-via [StructuredOptimization.jl]() [@antonello-desena-moonen-naylor-vanwaterschoot-2019,@mazumder-wang-2024].
-
-`ProximalAlgorithms.jl` has demonstrated significant research impact and grown both its user base and contributor community since its initial release.
-The package has evolved through contributions from over 18 developers beyond the original core developer (@lostella), with community members adding new features, reporting bugs, and suggesting new features.
+Since its initial release, `ProximalAlgorithms.jl` has grown both its user base and contributor community, while supporting research in control and signal processing as well as for advancing optimization methods.
+[@antonello-stella-patrinos-vanwaterschoot-2018] survey the use of proximal gradient algorithms in a variety of applications (audio de-clipping, video processing, image de-noising, data classification), with code snippets using `StructuredOptimization.jl`.
+[@antonello-desena-moonen-naylor-vanwaterschoot-2019] address joint acoustic source localization and dereverberation via sparse regularization.
+In control, the PANOC solver has been used for embedded nonlinear model predictive control [@sathya-sopasakis-vanparys-themelis-pipeleers-patrinos-2018], distributed motion planning at road intersections [@katriniok-sopasakis-schuurmans-patrinos-2019], and Gauss-Newton-accelerated nonlinear optimal control [@pas-themelis-patrinos-2023].
+Within optimization, [@demarchi-jia-kanzow-mehlitz-2023,@demarchi-2024] builds on the package's forward-backward-type solvers to implement augmented Lagrangian methods for constrained nonsmooth problems.
+The package has also seen adoption beyond its original developer community:
+[@liang-2025] invokes `FISTA` as a subroutine for their numerical scheme,
+[@waldmann-fan-2026] use it to implement their proximal multi-objective method in genomic prediction,
+[@adeoye-bemporad-2026] benchmark their smoothing approach against several proximal-gradient algorithms in `ProximalAlgorithms.jl`.
 
 # Example
 
@@ -106,7 +111,7 @@ struct Rosenbrock{T}
 end
 (f::Rosenbrock)(x) = (f.a-x[1])^2 + 100*(x[2]-x[1]^2)^2
 function ProximalAlgorithms.value_and_gradient(f::Rosenbrock, x)
-  return f(x), [2*(x[1]-f.a) + 4*100*(x[1]^2-x[2])*x[1], 2*100*(x[2]-x[1]^2)]
+  return f(x), [2*(x[1]-f.a) + 400*(x[1]^2-x[2])*x[1], 200*(x[2]-x[1]^2)]
 end
 
 f = Rosenbrock(1.0)
@@ -129,7 +134,22 @@ x, iters = solver(x0 = ones(2), f = f_auto, g = g)
 
 ## Numerical illustration
 
-Add comparison tables or plots here (e.g., iterations, timing, and function/gradient/prox evaluation counts across a few algorithms such as `ForwardBackward`, `FastForwardBackward`, `PANOC`, and `ZeroFPR`) on a representative test problem.
+We compare proximal-gradient solvers `ForwardBackward`, `FastForwardBackward`, `ZeroFPR`, `PANOC`, and `PANOCplus` from our package on a regularized least-squares problem problem.
+The smooth cost function $f$ is complemented with different regularizers $g$, convex (`NormL1`, `NormLinf`) and nonconvex (`NormL0`, `IndBallL0`), from `ProximalOperators.jl`.
+Experiments were performed on Ubuntu (...) on an Intel Core i7 (8-core) machine, using Julia 1.12.6.
+
+The tables report, for each regularizer, the convergence status of each solver, the runtime, the number of function, gradient, and proximal evaluations, and the final objective value.
+For `ZeroFPR`, `PANOC`, and `PANOCplus`, we use the (default) limited-memory BFGS Hessian approximation.
+
+\input{examples/Benchmark_NormL1.tex}
+
+\input{examples/Benchmark_NormLinf.tex}
+
+\input{examples/Benchmark_NormL0.tex}
+
+\input{examples/Benchmark_IndBallL0.tex}
+
+Although the final objective values differ, in some cases, due to the nonconvexity of the problem, all solvers successfully returned an approximate first-order stationary point, within the specified tolerance of $10^{-8}$.
 
 # AI usage disclosure
 
