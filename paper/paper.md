@@ -94,8 +94,8 @@ There are also related Python packages that implement proximal methods, often re
 Since its initial release, `ProximalAlgorithms.jl` has grown both its user base and contributor community, while supporting research in control and signal processing as well as for advancing optimization methods.
 [@antonello-stella-patrinos-vanwaterschoot-2018] survey the use of proximal gradient algorithms in a variety of applications (audio de-clipping, video processing, image de-noising, data classification), with code snippets using `StructuredOptimization.jl`.
 [@antonello-desena-moonen-naylor-vanwaterschoot-2019] address joint acoustic source localization and dereverberation via sparse regularization.
-In control, the PANOC solver has been used for embedded nonlinear model predictive control [@sathya-sopasakis-vanparys-themelis-pipeleers-patrinos-2018], distributed motion planning at road intersections [@katriniok-sopasakis-schuurmans-patrinos-2019], and Gauss-Newton-accelerated nonlinear optimal control [@pas-themelis-patrinos-2023].
-Within optimization, [@demarchi-jia-kanzow-mehlitz-2023,@demarchi-2024] builds on the package's forward-backward-type solvers to implement augmented Lagrangian methods for constrained nonsmooth problems.
+In control, the `PANOC` solver has been used for embedded nonlinear model predictive control [@sathya-sopasakis-vanparys-themelis-pipeleers-patrinos-2018], distributed motion planning at road intersections [@katriniok-sopasakis-schuurmans-patrinos-2019], and Gauss-Newton-accelerated nonlinear optimal control [@pas-themelis-patrinos-2023].
+Within optimization, [@demarchi-jia-kanzow-mehlitz-2023;@demarchi-2024] build on the `PANOCplus` solver to implement augmented Lagrangian methods for constrained nonsmooth problems.
 The package has also seen adoption beyond its original developer community:
 [@liang-2025] invokes `FISTA` as a subroutine for their numerical scheme,
 [@waldmann-fan-2026] use it to implement their proximal multi-objective method in genomic prediction,
@@ -123,8 +123,9 @@ solver = ProximalAlgorithms.FastForwardBackward(tol = 1e-5, verbose = true)
 x, iters = solver(x0 = ones(2), f = f, g = g)
 ```
 
-Here `f` wraps the smooth Rosenbrock term and `g` is the scaled l1-norm, whose proximal mapping is the coordinate-wise soft-thresholding operator.
-The `FastForwardBackward` algorithm is instantiated with a termination tolerance and verbosity option, and then called with the initial point and the two objective terms to produce the solution and the iteration count. One can wrap the smooth cost for automatic differentiation, as with `f_auto`:
+Here `f` wraps the smooth Rosenbrock term and `g` is the scaled $\ell_1$-norm, whose proximal mapping is the coordinate-wise soft-thresholding operator.
+The `FastForwardBackward` algorithm is instantiated with a termination tolerance and verbosity option, and then called with the initial point and the two objective terms to produce the solution and the iteration count. 
+Instead of providing the gradient of $f$, one can wrap the smooth cost for automatic differentiation, as with `f_auto`:
 
 ```julia
 using Zygote
@@ -136,20 +137,22 @@ x, iters = solver(x0 = ones(2), f = f_auto, g = g)
 
 ## Numerical illustration
 
-We compare proximal-gradient solvers `ForwardBackward`, `FastForwardBackward`, `ZeroFPR`, `PANOC`, and `PANOCplus` from our package on a regularized least-squares problem problem.
-The smooth cost function $f$ is complemented with different regularizers $g$, convex (`NormL1`, `NormLinf`) and nonconvex (`NormL0`, `IndBallL0`), from `ProximalOperators.jl`.
-Experiments were performed on Ubuntu (...) on an Intel Core i7 (8-core) machine, using Julia 1.12.6.
+We compare proximal-gradient solvers `ForwardBackward`, `FastForwardBackward`, `ZeroFPR`, `PANOC`, and `PANOCplus` on a regularized least-squares problem.
+The smooth cost function $f$ is complemented with different regularizers $g$ from `ProximalOperators.jl`, either convex `NormL1` or nonconvex `NormL0`.
+Experiments were performed with Ubuntu 64-bit on an Intel Core i7 (8-core) machine, using Julia 1.12.6.
 
 The tables report, for each regularizer, the convergence status of each solver, the runtime, the number of function, gradient, and proximal evaluations, and the final objective value.
 For `ZeroFPR`, `PANOC`, and `PANOCplus`, we use the (default) limited-memory BFGS Hessian approximation.
 
-\input{examples/Benchmark_NormL1.tex}
+\begin{center}
+  \input{examples/table_NormL1.tex}
 
-\input{examples/Benchmark_NormLinf.tex}
+  \input{examples/table_NormLinf.tex}
 
-\input{examples/Benchmark_NormL0.tex}
+  \input{examples/table_NormL0.tex}
 
-\input{examples/Benchmark_IndBallL0.tex}
+  \input{examples/table_IndBallL0.tex}
+\end{center}
 
 Although the final objective values differ, in some cases, due to the nonconvexity of the problem, all solvers successfully returned an approximate first-order stationary point, within the specified tolerance of $10^{-8}$.
 

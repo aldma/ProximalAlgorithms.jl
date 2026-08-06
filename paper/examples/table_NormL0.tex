@@ -1,0 +1,11 @@
+\begin{tabular}{rrrrrrr}
+  \toprule
+  \textbf{Method} & \textbf{Status} & \textbf{$t$ ($s$)} & \textbf{$\#f$} & \textbf{$\#\nabla f$} & \textbf{$\#prox$} & \textbf{Objective} \\
+  \midrule
+  ForwardBackward & first\_order & 0.0083 & 973 & 973 & 972 & 1445.45 \\
+  FastForwardBackward & first\_order & 0.0464 & 5153 & 5153 & 2577 & 1439.67 \\
+  ZeroFPR & first\_order & 0.0008 & 110 & 110 & 109 & 1439.67 \\
+  PANOC & first\_order & 0.0012 & 184 & 184 & 106 & 1445.45 \\
+  PANOCplus & first\_order & 0.0028 & 229 & 229 & 114 & 1439.67 \\
+  \bottomrule
+\end{tabular}
