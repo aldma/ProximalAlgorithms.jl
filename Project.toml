@@ -11,7 +11,7 @@ ProximalCore = "dc4f5ac2-75d1-4f31-931e-60435d74994b"
 
 [compat]
 ADTypes = "1.5.3"
-DifferentiationInterface = "0.6.2"
+DifferentiationInterface = "0.6.2,0.7"
 LinearAlgebra = "1.2"
 Printf = "1.2"
 ProximalCore = "0.1"
