@@ -31,6 +31,8 @@ affiliations:
    index: 4
 date: 3 August 2026
 bibliography: paper.bib
+header-includes: |
+  \usepackage{booktabs}
 ---
 
 # Summary
