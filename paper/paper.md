@@ -145,12 +145,20 @@ The tables report, for each regularizer, the convergence status of each solver, 
 For `ZeroFPR`, `PANOC`, and `PANOCplus`, we use the limited-memory BFGS Hessian approximation (default with memory 5).
 
 \begin{center}
+  `NormL1`
+
   \input{examples/table_NormL1.tex}
 
+  `NormLinf`
+  
   \input{examples/table_NormLinf.tex}
 
+  `NormL0`
+  
   \input{examples/table_NormL0.tex}
 
+  `IndBallL0`
+  
   \input{examples/table_IndBallL0.tex}
 \end{center}
 
