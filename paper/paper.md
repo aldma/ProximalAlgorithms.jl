@@ -137,12 +137,12 @@ x, iters = solver(x0 = ones(2), f = f_auto, g = g)
 
 ## Numerical illustration
 
-We compare proximal-gradient solvers `ForwardBackward`, `FastForwardBackward`, `ZeroFPR`, `PANOC`, and `PANOCplus` on a regularized least-squares problem.
-The smooth cost function $f$ is complemented with different regularizers $g$ from `ProximalOperators.jl`, either convex `NormL1` or nonconvex `NormL0`.
+We compare proximal-gradient solvers `ForwardBackward`, `FastForwardBackward`, `ZeroFPR`, `PANOC`, and `PANOCplus` on a regularized line spectra estimation problem, which seeks to recover the frequencies and amplitudes of a signal that consists of a mixture of sinusoids.
+The least-squares cost function $f$ is complemented with different regularizers $g$ from `ProximalOperators.jl`, either convex (`NormL1` and `NormLinf`) or nonconvex (`NormL0` and `IndBallL0`).
 Experiments were performed with Ubuntu 64-bit on an Intel Core i7 (8-core) machine, using Julia 1.12.6.
 
 The tables report, for each regularizer, the convergence status of each solver, the runtime, the number of function, gradient, and proximal evaluations, and the final objective value.
-For `ZeroFPR`, `PANOC`, and `PANOCplus`, we use the (default) limited-memory BFGS Hessian approximation.
+For `ZeroFPR`, `PANOC`, and `PANOCplus`, we use the limited-memory BFGS Hessian approximation (default with memory 5).
 
 \begin{center}
   \input{examples/table_NormL1.tex}
@@ -154,7 +154,7 @@ For `ZeroFPR`, `PANOC`, and `PANOCplus`, we use the (default) limited-memory BFG
   \input{examples/table_IndBallL0.tex}
 \end{center}
 
-Although the final objective values differ, in some cases, due to the nonconvexity of the problem, all solvers successfully returned an approximate first-order stationary point, within the specified tolerance of $10^{-8}$.
+Although the final objective values differ, in some cases, due to the nonconvexity of the problem, all solvers successfully returned an approximate first-order stationary point, within the specified tolerance of $10^{-6}$.
 
 # AI usage disclosure
 
