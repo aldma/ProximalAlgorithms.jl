@@ -11,25 +11,20 @@ authors:
   - name: Lorenzo Stella
     orcid: ...
     affiliation: 1
-  - name: Niccoló Antonello
-    orcid: 0000-0002-0803-5385
-    affiliation: 2
   - name: Alberto De Marchi^[corresponding author]
     orcid: 0000-0002-3545-6898
-    affiliation: 3
+    affiliation: 2
   - name: Puya Latafat
     orcid: 0000-0002-7969-8565
-    affiliation: 4
+    affiliation: 3
 affiliations:
  - name: AWS AI Labs, Berlin, Germany (work done prior to joining Amazon)
    index: 1
- - name: ...
-   index: 2
  - name: University of the Bundeswehr Munich, Germany
-   index: 3
+   index: 2
  - name: IMT School for Advanced Studies Lucca, Italy
-   index: 4
-date: 3 August 2026
+   index: 3
+date: xx xxxxxxx 202x
 bibliography: paper.bib
 header-includes: |
   \usepackage{booktabs}
@@ -164,6 +159,6 @@ All AI-generated suggestions were critically reviewed, modified where necessary,
 
 # Acknowledgements
 
-We acknowledge contributions from Ellis Brown, Guillaume Dalle, William Kong, and Paulo J. S. Silva, and support from Panagiotis Patrinos and Andreas Themelis during the genesis of this project.
+We acknowledge contributions from Niccoló Antonello, Ellis Brown, Guillaume Dalle, William Kong, and Paulo J. S. Silva, and support from Panagiotis Patrinos and Andreas Themelis during the genesis of this project.
 
 # References
