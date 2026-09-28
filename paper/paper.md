@@ -84,9 +84,7 @@ Such methods typically require fewer evaluations of the smooth term and its grad
 [FrankWolfe.jl](https://github.com/ZIB-IOL/FrankWolfe.jl) is a toolbox for convex optimization using conditional gradient algorihms [@besancon-carderera-pokutta-2022], which rely on linear minimization oracles instead of proximal mappings.
 
 There are also related Python packages that implement proximal methods, often restricted to convex problems or designed for specific applications, such as 
-[PyUNLocBoX](https://github.com/epfl-lts2/pyunlocbox) [@pyunlocbox-2017],
-[ProxToolbox](https://gitlab.gwdg.de/nam/ProxPython) [@russell-2017],
-[SCICO](https://github.com/lanl/scico) [@scico-2022], and
+[SCICO](https://github.com/lanl/scico) [@scico-2022] and
 [PyProximal](https://github.com/PyLops/pyproximal) [@pyproximal-2024].
 
 ## Research impact
@@ -95,7 +93,7 @@ Since its initial release, `ProximalAlgorithms.jl` has grown both its user base 
 [@antonello-stella-patrinos-vanwaterschoot-2018] survey the use of proximal gradient algorithms in a variety of applications (audio de-clipping, video processing, image de-noising, data classification), with code snippets using `StructuredOptimization.jl`.
 [@antonello-desena-moonen-naylor-vanwaterschoot-2019] address joint acoustic source localization and dereverberation via sparse regularization.
 In control, the `PANOC` solver has been used for embedded nonlinear model predictive control [@sathya-sopasakis-vanparys-themelis-pipeleers-patrinos-2018], distributed motion planning at road intersections [@katriniok-sopasakis-schuurmans-patrinos-2019], and Gauss-Newton-accelerated nonlinear optimal control [@pas-themelis-patrinos-2023].
-Within optimization, [@demarchi-jia-kanzow-mehlitz-2023;@demarchi-2024] build on the `PANOCplus` solver to implement augmented Lagrangian methods for constrained nonsmooth problems.
+Within optimization, [@demarchi-jia-kanzow-mehlitz-2023] builds on the `PANOCplus` solver to implement augmented Lagrangian methods for constrained nonsmooth problems.
 The package has also seen adoption beyond its original developer community:
 [@liang-2025] invokes `FISTA` as a subroutine for their numerical scheme,
 [@waldmann-fan-2026] use it to implement their proximal multi-objective method in genomic prediction,
