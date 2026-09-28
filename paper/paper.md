@@ -17,6 +17,9 @@ authors:
   - name: Puya Latafat
     orcid: 0000-0002-7969-8565
     affiliation: 3
+  - name: Andreas Themelis
+    orcid: 0000-0002-6044-0169
+    affiliation: 4
 affiliations:
  - name: AWS AI Labs, Berlin, Germany (work done prior to joining Amazon)
    index: 1
@@ -24,6 +27,8 @@ affiliations:
    index: 2
  - name: IMT School for Advanced Studies Lucca, Italy
    index: 3
+ - name: Kyushu University, Fukuoka, Japan
+   index: 4
 date: xx xxxxxxx 202x
 bibliography: paper.bib
 header-includes: |
@@ -159,6 +164,6 @@ All AI-generated suggestions were critically reviewed, modified where necessary,
 
 # Acknowledgements
 
-We acknowledge contributions from Niccoló Antonello, Ellis Brown, Guillaume Dalle, William Kong, and Paulo J. S. Silva, and support from Panagiotis Patrinos and Andreas Themelis during the genesis of this project.
+We acknowledge contributions from Niccoló Antonello, Ellis Brown, Guillaume Dalle, William Kong, and Paulo J. S. Silva, and support from Panagiotis Patrinos during the genesis of this project.
 
 # References
