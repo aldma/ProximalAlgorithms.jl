@@ -52,7 +52,7 @@ This makes the methods well suited to large-scale problems in which nonsmooth te
 
 `ProximalAlgorithms.jl` organizes its solvers according to the structure of the problem they address:
 
-- **Two-term splitting** ($f + g$): (Fast) proximal gradient / forward-backward splitting [@lions-mercier-1979; @tseng-2008; @beck-teboulle-2009], Douglas-Rachford splitting [@eckstein-bertsekas-1992], and the line-search-based methods ZeroFPR [@themelis-stella-patrinos-2018], PANOC [@stella-themelis-sopasakis-patrinos-2017], PANOC+ [@demarchi-themelis-2022], and Douglas-Rachford line search (DRLS) [@themelis-stella-patrinos-2022].
+- **Two-term splitting** ($f + g$): (Fast) proximal gradient / forward-backward splitting [@lions-mercier-1979; @beck-teboulle-2009], Douglas-Rachford splitting [@eckstein-bertsekas-1992], and the line-search-based methods ZeroFPR [@themelis-stella-patrinos-2018], PANOC [@stella-themelis-sopasakis-patrinos-2017], PANOC+ [@demarchi-themelis-2022], and Douglas-Rachford line search (DRLS) [@themelis-stella-patrinos-2022].
 - **Three-term splitting** ($f + g + h$): the Davis-Yin splitting scheme [@davis-yin-2017].
 - **Primal-dual splitting** ($f + g + h \circ L$): Chambolle-Pock [@chambolle-pock-2011], Vũ-Condat [@vu-2013; @condat-2013], and the asymmetric forward-backward-adjoint (AFBA) method [@latafat-patrinos-2017].
 
@@ -90,7 +90,6 @@ There are also related Python packages that implement proximal methods, often re
 ## Research impact
 
 Since its initial release, `ProximalAlgorithms.jl` has grown both its user base and contributor community, while supporting research in control and signal processing as well as for advancing optimization methods.
-[@antonello-stella-patrinos-vanwaterschoot-2018] survey the use of proximal gradient algorithms in a variety of applications (audio de-clipping, video processing, image de-noising, data classification), with code snippets using `StructuredOptimization.jl`.
 [@antonello-desena-moonen-naylor-vanwaterschoot-2019] address joint acoustic source localization and dereverberation via sparse regularization.
 In control, the `PANOC` solver has been used for embedded nonlinear model predictive control [@sathya-sopasakis-vanparys-themelis-pipeleers-patrinos-2018], distributed motion planning at road intersections [@katriniok-sopasakis-schuurmans-patrinos-2019], and Gauss-Newton-accelerated nonlinear optimal control [@pas-themelis-patrinos-2023].
 Within optimization, [@demarchi-jia-kanzow-mehlitz-2023] builds on the `PANOCplus` solver to implement augmented Lagrangian methods for constrained nonsmooth problems.
