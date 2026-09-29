@@ -148,12 +148,6 @@ For `ZeroFPR`, `PANOC`, and `PANOCplus`, we use the limited-memory BFGS Hessian 
 
 Although the final objective values differ, in some cases, due to the nonconvexity of the problem, all solvers successfully returned an approximate first-order stationary point, within the specified tolerance of $10^{-6}$.
 
-# AI usage disclosure
-
-No generative AI tools were used in the development of this software or the preparation of supporting materials.
-Claude Sonnet 5 was adopted to improve readability and proofread this text.
-All AI-generated suggestions were critically reviewed, modified where necessary, and fully validated by the authors, who retain complete responsibility.
-
 # Acknowledgements
 
 We acknowledge contributions from Niccoló Antonello, Ellis Brown, Guillaume Dalle, William Kong, and Paulo J. S. Silva, and support from Panagiotis Patrinos and Andreas Themelis during the genesis of this project.
