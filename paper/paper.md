@@ -157,4 +157,10 @@ Although the final objective values differ, in some cases, due to the nonconvexi
 
 We acknowledge contributions from Ellis Brown, Guillaume Dalle, William Kong, Paulo J. S. Silva, and Tamás Hakkel, and support from Panagiotis Patrinos and Andreas Themelis during the genesis of this project.
 
+# AI usage disclosure
+
+No generative AI tools were used in the development of this software or the preparation of supporting materials.
+Claude Sonnet 5 was adopted to improve readability and proofread this text.
+All AI-generated suggestions were critically reviewed, modified where necessary, and fully validated by the authors, who retain complete responsibility.
+
 # References
