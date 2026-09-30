@@ -9,7 +9,6 @@ tags:
   - splitting methods
 authors:
   - name: Lorenzo Stella
-    orcid: ...
     affiliation: 1
   - name: Niccoló Antonello
     orcid: 0000-0002-0803-5385
@@ -17,8 +16,9 @@ authors:
   - name: Puya Latafat
     orcid: 0000-0002-7969-8565
     affiliation: 3
-  - name: Alberto De Marchi^[corresponding author]
+  - name: Alberto De Marchi
     orcid: 0000-0002-3545-6898
+    corresponding: true
     affiliation: 4
 affiliations:
  - name: AWS AI Labs, Berlin, Germany (work done prior to joining Amazon)
