@@ -138,7 +138,7 @@ x, iters = solver(x0 = ones(2), f = f_auto, g = g)
 
 We compare proximal-gradient solvers `ForwardBackward`, `FastForwardBackward`, `ZeroFPR`, `PANOC`, and `PANOCplus` on a regularized line spectra estimation problem, which seeks to recover the frequencies and amplitudes of a signal that consists of a mixture of sinusoids.
 The least-squares cost function $f$ is complemented with different regularizers $g$ from `ProximalOperators.jl`, either convex (`NormLinf`) or nonconvex (`IndBallL0`).
-Experiments were performed with Ubuntu 64-bit on an Intel Core i7 (8-core) machine, using Julia 1.12.6.
+Experiments were performed with Ubuntu 64-bit on an Intel Core i7 (8-core) machine, using Julia 1.13.2.
 
 The tables report, for each regularizer, the convergence status of each solver, the runtime, the number of function, gradient, and proximal evaluations, and the final objective value.
 For `ZeroFPR`, `PANOC`, and `PANOCplus`, we use the limited-memory BFGS Hessian approximation (default with memory 5).
