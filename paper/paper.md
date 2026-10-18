@@ -52,9 +52,9 @@ This makes the methods well suited to large-scale problems in which nonsmooth te
 
 `ProximalAlgorithms.jl` organizes its solvers according to the structure of the problem they address:
 
-- **Two-term splitting** ($f + g$): (Fast) proximal gradient / forward-backward splitting [@lions-mercier-1979; @beck-teboulle-2009], Douglas-Rachford splitting [@eckstein-bertsekas-1992], and the line-search-based methods ZeroFPR [@themelis-stella-patrinos-2018], PANOC [@stella-themelis-sopasakis-patrinos-2017], PANOC+ [@demarchi-themelis-2022], and Douglas-Rachford line search (DRLS) [@themelis-stella-patrinos-2022].
-- **Three-term splitting** ($f + g + h$): the Davis-Yin splitting scheme [@davis-yin-2017].
-- **Primal-dual splitting** ($f + g + h \circ L$): Chambolle-Pock [@chambolle-pock-2011], Vũ-Condat [@vu-2013; @condat-2013], and the asymmetric forward-backward-adjoint (AFBA) method [@latafat-patrinos-2017].
+- **Two-term splitting** ($f + g$): (Fast) proximal gradient / forward-backward splitting [@lions1979; @beck2009], Douglas-Rachford splitting [@eckstein1992], and the line-search-based methods ZeroFPR [@themelis2018], PANOC [@stella2017], PANOC+ [@demarchi2022], and Douglas-Rachford line search (DRLS) [@themelis2022].
+- **Three-term splitting** ($f + g + h$): the Davis-Yin splitting scheme [@davis2017].
+- **Primal-dual splitting** ($f + g + h \circ L$): Chambolle-Pock [@chambolle2011], Vũ-Condat [@vu2013; @condat2013], and the asymmetric forward-backward-adjoint (AFBA) method [@latafat2017].
 
 # Statement of need
 
@@ -79,24 +79,25 @@ This design keeps the package lightweight and composable: new algorithms can be 
 `ProximalAlgorithms.jl` gives users of the Julia optimization ecosystems direct access to a wide range of well-established, first-order splitting algorithms through a single, consistent, allocation-conscious interface, backed by [ProximalOperators.jl](https://github.com/JuliaFirstOrder/ProximalOperators.jl)'s extensive library of proximable functions.
 
 This complements, rather than duplicates, other optimization software in the Julia ecosystem.
-[RegularizedOptimization.jl](https://github.com/JuliaSmoothOptimizers/RegularizedOptimization.jl) [@gollier-habiboullah-leconte-baraldi-demarchi-orban-diouane-2026] implements model-based trust-region and quadratic-regularization methods for a similar class of nonsmooth problems.
+[RegularizedOptimization.jl](https://github.com/JuliaSmoothOptimizers/RegularizedOptimization.jl) [@gollier2026] implements model-based trust-region and quadratic-regularization methods for a similar class of nonsmooth problems.
 Such methods typically require fewer evaluations of the smooth term and its gradient than the line-search-based methods in `ProximalAlgorithms.jl`, at the cost of more proximal-operator evaluations.
-[FrankWolfe.jl](https://github.com/ZIB-IOL/FrankWolfe.jl) is a toolbox for convex optimization using conditional gradient algorihms [@besancon-carderera-pokutta-2022], which rely on linear minimization oracles instead of proximal mappings.
+[FrankWolfe.jl](https://github.com/ZIB-IOL/FrankWolfe.jl) is a toolbox for convex optimization using conditional gradient algorihms [@besancon2022], which rely on linear minimization oracles instead of proximal mappings.
+[Manopt.jl](https://manoptjl.org/) [@bergmann2022] provides algorithms for optimization problems given on a Riemannian manifold and includes some splitting-based methods.
 
 There are also related Python packages that implement proximal methods, often restricted to convex problems or designed for specific applications, such as 
-[SCICO](https://github.com/lanl/scico) [@scico-2022] and
-[PyProximal](https://github.com/PyLops/pyproximal) [@pyproximal-2024].
+[SCICO](https://github.com/lanl/scico) [@scico2022] and
+[PyProximal](https://github.com/PyLops/pyproximal) [@pyproximal2024].
 
 ## Research impact
 
 Since its initial release, `ProximalAlgorithms.jl` has grown both its user base and contributor community, while supporting research in control and signal processing as well as for advancing optimization methods.
-[@antonello-desena-moonen-naylor-vanwaterschoot-2019] address joint acoustic source localization and dereverberation via sparse regularization.
-In control, the `PANOC` solver has been used for embedded nonlinear model predictive control [@sathya-sopasakis-vanparys-themelis-pipeleers-patrinos-2018], distributed motion planning at road intersections [@katriniok-sopasakis-schuurmans-patrinos-2019], and Gauss-Newton-accelerated nonlinear optimal control [@pas-themelis-patrinos-2023].
-Within optimization, [@demarchi-jia-kanzow-mehlitz-2023] builds on the `PANOCplus` solver to implement augmented Lagrangian methods for constrained nonsmooth problems.
+[@antonello2019] address joint acoustic source localization and dereverberation via sparse regularization.
+In control, the `PANOC` solver has been used for embedded nonlinear model predictive control [@sathya2018], distributed motion planning at road intersections [@katriniok2019], and Gauss-Newton-accelerated nonlinear optimal control [@pas2023].
+Within optimization, [@demarchi2023] builds on the `PANOCplus` solver to implement augmented Lagrangian methods for constrained nonsmooth problems.
 The package has also seen adoption beyond its original developer community:
-[@liang-2025] invokes `FISTA` as a subroutine for their numerical scheme,
-[@waldmann-fan-2026] use it to implement their proximal multi-objective method in genomic prediction,
-[@adeoye-bemporad-2026] benchmark their smoothing approach against several proximal-gradient algorithms in `ProximalAlgorithms.jl`.
+[@liang2025] invokes `FISTA` as a subroutine for their numerical scheme,
+[@waldmann2026] use it to implement their proximal multi-objective method in genomic prediction,
+[@adeoye2026] benchmark their smoothing approach against several proximal-gradient algorithms in `ProximalAlgorithms.jl`.
 
 # Example
 
