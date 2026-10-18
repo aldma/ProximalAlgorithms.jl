@@ -55,6 +55,7 @@ This makes the methods well suited to large-scale problems in which nonsmooth te
 - **Two-term splitting** ($f + g$): (Fast) proximal gradient / forward-backward splitting [@lions1979; @beck2009], Douglas-Rachford splitting [@eckstein1992], and the line-search-based methods ZeroFPR [@themelis2018], PANOC [@stella2017], PANOC+ [@demarchi2022], and Douglas-Rachford line search (DRLS) [@themelis2022].
 - **Three-term splitting** ($f + g + h$): the Davis-Yin splitting scheme [@davis2017].
 - **Primal-dual splitting** ($f + g + h \circ L$): Chambolle-Pock [@chambolle2011], Vũ-Condat [@vu2013; @condat2013], and the asymmetric forward-backward-adjoint (AFBA) method [@latafat2017].
+
 Adaptive schemes for convex problems are being introduced as well, particularly AdaPGM and AdaPDM [@latafat2025].
 
 # Statement of need
