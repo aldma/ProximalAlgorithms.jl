@@ -9,7 +9,7 @@ tags:
   - splitting methods
 authors:
   - name: Lorenzo Stella
-    affiliation: 1
+    orcid: 0000-0002-8304-7327
   - name: Niccoló Antonello
     orcid: 0000-0002-0803-5385
     affiliation: 2
@@ -24,8 +24,6 @@ authors:
     orcid: 0000-0003-4824-7697
     affiliation: 5
 affiliations:
- - name: AWS AI Labs, Berlin, Germany (work done prior to joining Amazon)
-   index: 1
  - name: EssilorLuxottica, Milan, Italy (work done prior to joining EssilorLuxottica)
    index: 2
  - name: IMT School for Advanced Studies Lucca, Italy
