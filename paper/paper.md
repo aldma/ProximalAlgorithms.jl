@@ -10,6 +10,7 @@ tags:
 authors:
   - name: Lorenzo Stella
     orcid: 0000-0002-8304-7327
+    affiliation: 1
   - name: Niccoló Antonello
     orcid: 0000-0002-0803-5385
     affiliation: 2
@@ -18,20 +19,27 @@ authors:
     affiliation: 3
   - name: Alberto De Marchi
     orcid: 0000-0002-3545-6898
-    corresponding: true
     affiliation: 4
+    corresponding: true
+  - name: Andreas Themelis
+    orcid: 0000-0002-6044-0169
+    affiliation: 5
   - name: Panagiotis Patrinos
     orcid: 0000-0003-4824-7697
-    affiliation: 5
+    affiliation: 6
 affiliations:
- - name: EssilorLuxottica, Milan, Italy (work done prior to joining EssilorLuxottica)
-   index: 2
- - name: IMT School for Advanced Studies Lucca, Italy
-   index: 3
- - name: University of the Bundeswehr Munich, Germany
-   index: 4
- - name: KU Leuven, Belgium
-   index: 5
+  - index: 1
+    name: Independent researcher
+  - index: 2
+    name: EssilorLuxottica, Milan, Italy (work done prior to joining EssilorLuxottica)
+  - index: 3
+    name: IMT School for Advanced Studies Lucca, Italy
+  - index: 4
+    name: University of the Bundeswehr Munich, Germany
+  - index: 5
+    name: Kyushu University, Japan
+  - index: 6
+    name: KU Leuven, Belgium
 date: xx xxxxxxx 202x
 bibliography: paper.bib
 header-includes: |
@@ -161,7 +169,7 @@ Although the final objective values differ, in some cases, due to the nonconvexi
 
 # Acknowledgements
 
-We acknowledge contributions from Ellis Brown, Guillaume Dalle, William Kong, Paulo J. S. Silva, and Tamás Hakkel, and support (mathematical and typographical) from Andreas Themelis.
+We acknowledge contributions from Ellis Brown, Guillaume Dalle, William Kong, Paulo J. S. Silva, and Tamás Hakkel.
 
 # AI usage disclosure
 
