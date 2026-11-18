@@ -33,4 +33,4 @@ makedocs(
     checkdocs = :exported,
 )
 
-deploydocs(repo = "github.com/JuliaFirstOrder/ProximalAlgorithms.jl.git")
+deploydocs(repo = "github.com/aldma/ProximalAlgorithms.jl.git")
